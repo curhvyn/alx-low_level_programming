@@ -1,19 +1,30 @@
 #include "lists.h"
+
 /**
- * free_listint2 - free by setting head to NULL
- * @head: head of linkedlist
+ * pop_listint - deletes the head node of
+ * a linked list
+ * @head: head of a list.
+ *
+ * Return: head node's data.
  */
-void free_listint2(listint_t **head)
+int pop_listint(listint_t **head)
 {
-	listint_t *hptr;
+	int hnode;
+	listint_t *h;
+	listint_t *curr;
 
-	if (head == NULL)
-		return;
+	if (*head == NULL)
+		return (0);
 
-	while (*head != NULL)
-	{
-		hptr = *head;
-		*head = (*head)->next;
-		free(hptr);
-	}
+	curr = *head;
+
+	hnode = curr->n;
+
+	h = curr->next;
+
+	free(curr);
+
+	*head = h;
+
+	return (hnode);
 }
